@@ -35,7 +35,10 @@ window.addEventListener("load",() =>
     //adding 4 li to the ul node 
     for(i = 0; i < 4; i++)
     {
-        document.querySelector('ul').appendChild(li.cloneNode());
+        //handling the event and sectional styling 
+        document.querySelector('ul').appendChild(li.cloneNode()).addEventListener('click',(e) => {
+            console.log(e.target.id);
+        });
     }
 
     //fetching all the values of li in the dom
@@ -61,6 +64,7 @@ window.addEventListener("load",() =>
     {
         //giving each value of anAnchor(which is a value(1 single value) of allLiAnchors) the attribute of #section + what ever the current value of idValue is. 
         anAnchor.setAttribute("href", "#section"+idValue);
+        anAnchor.setAttribute("id",idValue)
         //increementing at every loop . 
         idValue++;
     }

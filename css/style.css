@@ -118,7 +118,7 @@ body {
     margin-bottom: 10px;
     border-radius: 10px;
   }
-  .section2 {
+  section:fullscreen {
     background-image: linear-gradient(
       to right top,
       #444e4a,
