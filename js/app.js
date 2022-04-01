@@ -17,12 +17,10 @@ window.addEventListener("load",() =>
     //const anchorWithClass = anchor.classList.add('nav-link');
     //precreating the ul tag 
     const ul = document.createElement('ul');
-    //precreating the division tag
-    const div = document.createElement('div');
     //precreating the li tag
     const li = document.createElement('li');
     //precreating the span tag
-    const span = document.createElement('span');
+
 
 
     //adding header to the body node 
@@ -35,17 +33,11 @@ window.addEventListener("load",() =>
     //adding ul to the nav node 
     document.querySelector('nav').appendChild(ul);
     //adding div to the nav node 
-    document.querySelector('nav').appendChild(div);
 
     //adding 3 li to the ul node and 3 span to the div node
     for(i = 0; i < 4; i++)
     {
         document.querySelector('ul').appendChild(li.cloneNode());
-        if(i < 3) 
-        {
-            document.querySelector('div').appendChild(span.cloneNode());
-        }
-        
     }
 
     let lis = document.querySelectorAll('li');
@@ -66,7 +58,7 @@ window.addEventListener("load",() =>
     let idValue = 1; 
     for(anAnchor of allLiAnchors)
     {
-        anAnchor.setAttribute("id", "section"+idValue);
+        anAnchor.setAttribute("href", "#section"+idValue);
         idValue++;
     }
 
@@ -91,42 +83,7 @@ window.addEventListener("load",() =>
     }
     
 
-    
-   
-
-
-
-
 })
-
-
-
-/* ------------- working with navbar for the mobile view */
-
-//this part of the code is for handling the navbar for the mobile 
-// view and does not have any thing to do with the inner html dynamic 
-//creation , it ends in the section delimeter indecated as navbar section end
-  
-
-/*
-const harmburger = document.querySelector(".harmburger");
-console.log(harmburger); 
-navMenu = document.querySelector(".nav-menu");
-console.log(navMenu)
-
-harmburger.addEventListener("click", () => {
-    harmburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
-})
-
-
-document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
-    harmburger.classList.remove("active");
-    navMenu.classList.remove("active");
-}))
-*/
-
-
 
 
 
