@@ -1,8 +1,9 @@
 
+/*  -----summary of the code below ------
+The event listener below will fire when the page(window) loads this will run a couple of codes 
+inside the call back function passed to it in the second parameter , this execution will simply create a navigation with all the neccessary class id and attributed needed for a responsive navigation bar. 
 
-/* --------------------------- section end -------------------------------------*/
-
-//document.cloneNode
+*/
 window.addEventListener("load",() => 
 {
     
@@ -14,7 +15,6 @@ window.addEventListener("load",() =>
     const anchor = document.createElement('a');
     //adding text to the precreated anchor tag
     const achorAndText = anchor.insertAdjacentText('afterbegin',"Landing Page.");
-    //const anchorWithClass = anchor.classList.add('nav-link');
     //precreating the ul tag 
     const ul = document.createElement('ul');
     //precreating the li tag
@@ -32,18 +32,17 @@ window.addEventListener("load",() =>
     document.querySelector('nav').insertAdjacentElement('afterbegin',anchor);
     //adding ul to the nav node 
     document.querySelector('nav').appendChild(ul);
-    //adding div to the nav node 
-
-    //adding 3 li to the ul node and 3 span to the div node
+    //adding 4 li to the ul node 
     for(i = 0; i < 4; i++)
     {
         document.querySelector('ul').appendChild(li.cloneNode());
     }
 
+    //fetching all the values of li in the dom
     let lis = document.querySelectorAll('li');
 
-    console.log(lis);
 
+    //this is a variable created to add numerical value to the dynamically generated text in the anchor , for the navigation 
     let idNumber = 1; 
     for(anL of lis) 
     {
@@ -53,34 +52,36 @@ window.addEventListener("load",() =>
         idNumber++;
     }
 
+    //fetching all the anchor tags with the class nav-link 
     allLiAnchors = document.querySelectorAll('.nav-link');
 
+    //simply created for an incremented value of numbers to be added to the id of the attribute created by the loop below it . 
     let idValue = 1; 
     for(anAnchor of allLiAnchors)
     {
+        //giving each value of anAnchor(which is a value(1 single value) of allLiAnchors) the attribute of #section + what ever the current value of idValue is. 
         anAnchor.setAttribute("href", "#section"+idValue);
+        //increementing at every loop . 
         idValue++;
     }
 
+    //adding a class of navbar to the nav node
     document.querySelector('nav').classList.add('navbar');
+    //adding a class of nav-branding
     document.querySelector('a').classList.add('nav-branding');
 
+    //adding the class of nav-menu to the ul
     document.querySelector("ul").classList.add("nav-menu");
-    document.querySelector("div").classList.add("harmburger");
 
+    //fetching all values of li 
     const allLi = document.querySelectorAll("li");
-    const allSpan = document.querySelectorAll('span');
 
-
+    //adding the class nav-item to all li 
     for(const li of allLi )
     {
         li.classList.add('nav-item');
     }
 
-    for(const span of allSpan) 
-    {
-        span.classList.add('bar');
-    }
     
 
 })
