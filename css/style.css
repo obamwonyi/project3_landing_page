@@ -118,7 +118,7 @@ body {
     margin-bottom: 10px;
     border-radius: 10px;
   }
-  section:active {
+  .section2 {
     background-image: linear-gradient(
       to right top,
       #444e4a,
