@@ -118,7 +118,7 @@ body {
     margin-bottom: 10px;
     border-radius: 10px;
   }
-  section:fullscreen {
+  .activeSection {
     background-image: linear-gradient(
       to right top,
       #444e4a,
@@ -222,7 +222,7 @@ body {
     margin-bottom: 10px;
     border-radius: 10px;
   }
-  section:hover {
+  .activeSection {
     background-image: linear-gradient(
       to right top,
       #444e4a,
@@ -318,7 +318,7 @@ body {
     margin-bottom: 10px;
     border-radius: 10px;
   }
-  section:hover {
+  .activeSection {
     background-image: linear-gradient(
       to right top,
       #444e4a,

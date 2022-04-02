@@ -37,7 +37,39 @@ window.addEventListener("load",() =>
     {
         //handling the event and sectional styling 
         document.querySelector('ul').appendChild(li.cloneNode()).addEventListener('click',(e) => {
-            console.log(e.target.id);
+          //console.log(e.target.id);
+
+          let allSection = document.querySelectorAll("section");
+          //removing the class for highlighting the current section in view
+          for (aSection of allSection) {
+            aSection.classList.remove("activeSection");
+          }
+          
+          switch (e.target.id) {
+            case "1":
+              document
+                .querySelector("#section1")
+                .classList.add("activeSection");
+              break;
+
+            case "2":
+              document
+                .querySelector("#section2")
+                .classList.add("activeSection");
+              break;
+
+            case "3":
+              document
+                .querySelector("#section3")
+                .classList.add("activeSection");
+              break;
+
+            default:
+              document
+                .querySelector("#section4")
+                .classList.add("activeSection");
+              break;
+          }
         });
     }
 
