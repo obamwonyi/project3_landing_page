@@ -6,9 +6,6 @@ inside the call back function passed to it in the second parameter , this execut
 */
 
 
-
-
-
 //precreating the section tag
 const section = document.createElement('section');
 //paragraph text for the sections 
@@ -46,12 +43,42 @@ let sectionIdCount = 1;
 //adding section to the body 
 for(i = 0; i < 4; i++) 
 {
+
   section.setAttribute('id','section'+sectionIdCount);
   document.body
-    .appendChild(section.cloneNode());
+    .appendChild(section.cloneNode()).addEventListener('click',(e) => {
+
+      
+      let selAllSec = document.querySelectorAll('section');
+      //removing the classes , so as to unset it from other sections before re adding it to 
+      // the new section that was clicked.
+      for(aSec of selAllSec) 
+      {
+        aSec.classList.remove("activeSection");
+      }
+
+      const targetId = e.target.id;
+      if(targetId == "header1" || targetId == "p1")
+      {
+        document.querySelector("#section1").classList.add("activeSection");
+      }
+      else if(targetId == "header2" || targetId == "p2") 
+      {
+        document.querySelector("#section2").classList.add("activeSection");
+      }
+      else if(targetId == "header3" || targetId == "p3")
+      {
+        document.querySelector("#section3").classList.add("activeSection");
+      }
+      else if(targetId == "header4" || targetId == "p4")
+      {
+        document.querySelector("#section4").classList.add("activeSection");
+      }
+    });
   sectionIdCount++;
 }
 
+//selecting all sections
 const sectionAll = document.querySelectorAll("section");
 
 let sectionHeaderCount = 1;
@@ -62,6 +89,32 @@ for(eachSection of sectionAll)
    eachSection.appendChild(p.cloneNode()).insertAdjacentText('afterbegin',sectionText);
    sectionHeaderCount++;
 }
+
+//selecting all paragraph in section 
+let allParagraph = document.querySelectorAll('p');
+//selecting all h1 in section 
+let allH1 = document.querySelectorAll('h1');
+
+let pCount = 1;
+//adding id to every paragraph in the section 
+for(aP of allParagraph)
+{
+  aP.setAttribute('id',"p"+pCount);
+  pCount++;
+}
+
+let h1Count = 1; 
+//adding id to ever h1 in the section 
+for(anH1 of allH1)
+{
+  anH1.setAttribute('id','header'+h1Count);
+  h1Count++;
+}
+
+
+
+
+
 
 
 
@@ -88,11 +141,6 @@ footerAnchor.insertAdjacentHTML("afterbegin", "&#169; udacity landing page");
 window.addEventListener("load",() => 
 {
 
-
-
-
-  
-    
     //precreating the header tag
     const header =  document.createElement('header');
     //precreating the nav tag
@@ -123,7 +171,7 @@ window.addEventListener("load",() =>
     {
         //handling the event and sectional styling 
         document.querySelector('ul').appendChild(li.cloneNode()).addEventListener('click',(e) => {
-          //console.log(e.target.id);
+    
 
           let allSection = document.querySelectorAll("section");
           //removing the class for highlighting the current section in view
