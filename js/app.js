@@ -1,15 +1,76 @@
+/* ------------------------------creating the navigation ------------------------*/
+/* precreating all tags needed to be created in the dom */
 
-/*  -----summary of the code below ------
-The event listener below will fire when the page(window) loads this will run a couple of codes 
-inside the call back function passed to it in the second parameter , this execution will simply create a navigation with all the neccessary class id and attributed needed for a responsive navigation bar. 
-
-*/
-
-
-//precreating the section tag
+const header = document.createElement('header');
+const nav = document.createElement('nav');
+const ul = document.createElement('ul');
+const li = document.createElement('li');
 const section = document.createElement('section');
-//paragraph text for the sections 
-const sectionText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+const h1 = document.createElement('h1');
+const p = document.createElement('p');
+const a = document.createElement('a');
+const footer = document.createElement('footer');
+
+/* building the navigation -----------------------------------*/
+
+//adding the header node to the body node as a child
+const createdHeader = document.body.appendChild(header);
+/* working with nav in header ------------------------*/
+//adding the nav node as a child to the header node 
+const createdNav = createdHeader.appendChild(nav);
+//adding a class to the nav node 
+createdNav.classList.add('navbar');
+//adding an anchor node to the nav node 
+const createdAnchor = createdNav.appendChild(a);
+//adding a class to the anchor node in the nav node 
+createdAnchor.classList.add('nav-branding');
+createdAnchor.appendChild(document.createTextNode("Landing Page."));
+/* working with ul in the nav node ------------------------*/
+//adding the ul node as a child to the header node
+const createdUl = createdNav.appendChild(ul);
+//adding a class to the ul node 
+createdUl.classList.add('nav-menu');
+/*adding four li node to the ul node as well as adding thier classes
+and also adding an anchor to the li node as well as adding classed to the 
+anchor */
+// creating a new anchor node 
+const anchor = document.createElement('a');
+for(i = 1; i < 5; i++)
+{
+  //adding an li node to the ul node as a child 
+  let createdLi = createdUl.appendChild(li.cloneNode());
+  //adding a class to the li node 
+  createdLi.classList.add('nav-item');
+  //adding an anchor node to the li node
+  //adding a class to each anchor node in the li node 
+  anchor.classList.add('nav-link');
+  //adding an it attribute to each anchor
+  anchor.setAttribute('id',i)
+  //adding an href attribute to each anchor
+  anchor.setAttribute('href','#section'+i);
+  //finally appending the anchor to the li node 
+  let createdA = createdLi.appendChild(anchor.cloneNode());
+  //adding an event listener to the anchor tags ----------------
+  createdA.addEventListener('click',(e) => {
+    //preventing the default action of the anchor tag 
+    e.preventDefault(); 
+    //fetching the anchors tag by the href attribute 
+    //const hrefAnchor  = document.querySelector('href');
+    anchorAttribute = e.target.getAttribute('href');
+    //this implements the scrolling to the sections
+    document.querySelector(anchorAttribute).scrollIntoView({
+      behavior: "smooth"
+    });
+    
+  })//----------------------------event ending ------------------
+  createdA.appendChild(document.createTextNode("section"+i));
+}
+/* ---------------creating the sections ------------------------------*/
+//The sections will be created along with a scroll event to fire 
+//when the view is at the top most 
+//paragraph text node ---------------
+pTextNode = document.createTextNode(`
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet justo 
         donec enim diam vulputate. Aliquam faucibus purus in massa tempor nec. Est 
         ultricies integer quis auctor elit sed vulputate mi sit. Dolor sed
@@ -32,229 +93,33 @@ const sectionText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
         viverra vitae congue eu. Nunc lobortis mattis aliquam faucibus purus in
         massa tempor. Amet venenatis urna cursus eget nunc scelerisque viverra
         mauris in. Etiam erat velit scelerisque in dictum non. Praesent
-        elementum facilisis leo vel fringilla est ullamcorper eget. `;
+        elementum facilisis leo vel fringilla est ullamcorper eget.
+`);
 
-//precreating the h1 element
-const h1 = document.createElement('h1');
-const p = document.createElement('p');
-
-let sectionIdCount = 1; 
-
-//adding section to the body 
-for(i = 0; i < 4; i++) 
+//creating the section node 
+for(i = 1; i < 5; i++)
 {
-
-  section.setAttribute('id','section'+sectionIdCount);
-  document.body
-    .appendChild(section.cloneNode()).addEventListener('click',(e) => {
-
-      
-      let selAllSec = document.querySelectorAll('section');
-      //removing the classes , so as to unset it from other sections before re adding it to 
-      // the new section that was clicked.
-      for(aSec of selAllSec) 
-      {
-        aSec.classList.remove("activeSection");
-      }
-
-      const targetId = e.target.id;
-      if(targetId == "header1" || targetId == "p1")
-      {
-        document.querySelector("#section1").classList.add("activeSection");
-      }
-      else if(targetId == "header2" || targetId == "p2") 
-      {
-        document.querySelector("#section2").classList.add("activeSection");
-      }
-      else if(targetId == "header3" || targetId == "p3")
-      {
-        document.querySelector("#section3").classList.add("activeSection");
-      }
-      else if(targetId == "header4" || targetId == "p4")
-      {
-        document.querySelector("#section4").classList.add("activeSection");
-      }
-    });
-  sectionIdCount++;
+  //adding the section node to the body node 
+  createdSection = document.body.appendChild(section.cloneNode());
+  //adding an attribute to the section 
+  createdSection.setAttribute('id',"section"+i);
+  //adding an h1 node to the section node 
+  createdH1 = createdSection.appendChild(h1.cloneNode());
+  //adding an attribute to the h1 node 
+  createdH1.setAttribute('id',"header"+i);
+  //adding a text node to the h1 node 
+  createdH1.appendChild(document.createTextNode("section"+i));
+  //adding a paragraph node to the section node 
+  createdP = createdSection.appendChild(p.cloneNode());
+  createdP.setAttribute('id','p'+i);
+  //adding a text node to the paragraph node 
+  createdP.appendChild(pTextNode.cloneNode());
 }
 
-//selecting all sections
-const sectionAll = document.querySelectorAll("section");
-
-let sectionHeaderCount = 1;
-//adding h1 and p to each section 
-for(eachSection of sectionAll)
-{
-   eachSection.appendChild(h1.cloneNode()).insertAdjacentText('afterbegin',"Section"+sectionHeaderCount);
-   eachSection.appendChild(p.cloneNode()).insertAdjacentText('afterbegin',sectionText);
-   sectionHeaderCount++;
-}
-
-//selecting all paragraph in section 
-let allParagraph = document.querySelectorAll('p');
-//selecting all h1 in section 
-let allH1 = document.querySelectorAll('h1');
-
-let pCount = 1;
-//adding id to every paragraph in the section 
-for(aP of allParagraph)
-{
-  aP.setAttribute('id',"p"+pCount);
-  pCount++;
-}
-
-let h1Count = 1; 
-//adding id to ever h1 in the section 
-for(anH1 of allH1)
-{
-  anH1.setAttribute('id','header'+h1Count);
-  h1Count++;
-}
+window.addEventListener('scroll',(e) => {
+  e.preventDefault();
+  selSections = document.querySelector('section1');
 
 
-
-
-
-
-
-
-//creating footer and its child nodes -----------------------------/
-const footer = document.createElement('footer');
-let anchor = document.createElement('a');
-document.body.appendChild(footer);
-let footerNode = document.querySelector('footer');
-footerNode.classList.add('footer');
-let footerP = footerNode.appendChild(p);
-let footerAnchor = footerP.appendChild(anchor);
-footerAnchor.setAttribute('href','copyright');
-footerAnchor.insertAdjacentHTML("afterbegin", "&#169; udacity landing page");
-
-
-
-
-
-
-
-
-
-
-window.addEventListener("load",() => 
-{
-
-    //precreating the header tag
-    const header =  document.createElement('header');
-    //precreating the nav tag
-    const nav = document.createElement('nav');
-    //precreating the anchor tag
-    const anchor = document.createElement('a');
-    //adding text to the precreated anchor tag
-    const achorAndText = anchor.insertAdjacentText('afterbegin',"Landing Page.");
-    //precreating the ul tag 
-    const ul = document.createElement('ul');
-    //precreating the li tag
-    const li = document.createElement('li');
-    //precreating the span tag
-
-
-
-    //adding header to the body node 
-    document.body.insertAdjacentElement('afterbegin',header);
-
-    //adding nav to the header node 
-    document.querySelector('header').insertAdjacentElement('afterbegin',nav);
-    //adding anchor to the nav node 
-    document.querySelector('nav').insertAdjacentElement('afterbegin',anchor);
-    //adding ul to the nav node 
-    document.querySelector('nav').appendChild(ul);
-    //adding 4 li to the ul node 
-    for(i = 0; i < 4; i++)
-    {
-        //handling the event and sectional styling 
-        document.querySelector('ul').appendChild(li.cloneNode()).addEventListener('click',(e) => {
-    
-
-          let allSection = document.querySelectorAll("section");
-          //removing the class for highlighting the current section in view
-          for (aSection of allSection) {
-            aSection.classList.remove("activeSection");
-          }
-          
-          switch (e.target.id) {
-            case "1":
-              document
-                .querySelector("#section1")
-                .classList.add("activeSection");
-              break;
-
-            case "2":
-              document
-                .querySelector("#section2")
-                .classList.add("activeSection");
-              break;
-
-            case "3":
-              document
-                .querySelector("#section3")
-                .classList.add("activeSection");
-              break;
-
-            default:
-              document
-                .querySelector("#section4")
-                .classList.add("activeSection");
-              break;
-          }
-        });
-    }
-
-    //fetching all the values of li in the dom
-    let lis = document.querySelectorAll('li');
-
-
-    //this is a variable created to add numerical value to the dynamically generated text in the anchor , for the navigation 
-    let idNumber = 1; 
-    for(anL of lis) 
-    {
-        anchorInLi = anL.appendChild(anchor.cloneNode());
-        anchorWithClass = anchorInLi.classList.add('nav-link');
-        anchorInLi.insertAdjacentText('afterbegin','section'+idNumber);
-        idNumber++;
-    }
-
-    //fetching all the anchor tags with the class nav-link 
-    allLiAnchors = document.querySelectorAll('.nav-link');
-
-    //simply created for an incremented value of numbers to be added to the id of the attribute created by the loop below it . 
-    let idValue = 1; 
-    for(anAnchor of allLiAnchors)
-    {
-        //giving each value of anAnchor(which is a value(1 single value) of allLiAnchors) the attribute of #section + what ever the current value of idValue is. 
-        anAnchor.setAttribute("href", "#section"+idValue);
-        anAnchor.setAttribute("id",idValue)
-        //increementing at every loop . 
-        idValue++;
-    }
-
-    //adding a class of navbar to the nav node
-    document.querySelector('nav').classList.add('navbar');
-    //adding a class of nav-branding
-    document.querySelector('a').classList.add('nav-branding');
-
-    //adding the class of nav-menu to the ul
-    document.querySelector("ul").classList.add("nav-menu");
-
-    //fetching all values of li 
-    const allLi = document.querySelectorAll("li");
-
-    //adding the class nav-item to all li 
-    for(const li of allLi )
-    {
-        li.classList.add('nav-item');
-    }
-
-    
 
 })
-
-
-
